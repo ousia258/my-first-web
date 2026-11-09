@@ -1,3 +1,33 @@
-my-first-web/
-├── data.json     ✅ 已完成
-└── index.html    ⏳ 下一步
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>我的第一个网站</title>
+</head>
+<body>
+  <h1>我的第一个网站</h1>
+
+  <p id="name">正在加载...</p>
+  <p id="message"></p>
+  <p id="score"></p>
+
+  <script>
+    fetch("./data.json")
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("name").textContent =
+          "姓名：" + data.name;
+
+        document.getElementById("message").textContent =
+          data.message;
+
+        document.getElementById("score").textContent =
+          "分数：" + data.score;
+      })
+      .catch(error => {
+        console.error("读取 JSON 失败：", error);
+      });
+  </script>
+</body>
+</html>
